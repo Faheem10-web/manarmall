@@ -6,7 +6,7 @@ const SHOPS = [
     id: 1, 
     brand: 'Loewe', 
     category: 'Luxury Fashion', 
-    image: 'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&q=80&w=600' 
+    image: 'https://i.pinimg.com/736x/18/80/90/1880902092e794836d3c15b2af04912c.jpg' 
   },
   { 
     id: 2, 
@@ -18,7 +18,7 @@ const SHOPS = [
     id: 3, 
     brand: 'Rolex', 
     category: 'Fine Watches', 
-    image: 'https://images.unsplash.com/photo-1587836374828-cb4387df3eb7?auto=format&fit=crop&q=80&w=600' 
+    image: 'https://i.pinimg.com/1200x/20/fa/4a/20fa4a4d88d1bbb6d0f46cdcca33384a.jpg' 
   },
   { 
     id: 4, 
