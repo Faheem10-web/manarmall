@@ -28,7 +28,7 @@ const SLIDES = [
     headingLine2: 'ESSENTIALS',
     description: 'Curated pieces for your\nwardrobe upgrade.',
     ctaText: 'SHOP THE EDIT',
-    image: 'https://manarmall.com/media/i5xnt5wv/03.jpg?width=2500&format=webp',
+    image: 'https://i.pinimg.com/736x/4e/80/9e/4e809ecc8d039487a01034f5c1e02ab7.jpg',
     alt: 'Manar Mall dining and entertainment',
   },
   {
