@@ -158,8 +158,12 @@ export default function HeroBanner({ onBrandSearchClick }) {
             </div>
 
             <div className="pill-text-group">
-              <span className="pill-heading">LOOKING FOR A SPECIFIC BRAND?</span>
-              <span className="pill-subtext">Search by name for quick results</span>
+              <span className="pill-heading">
+                LOOKING FOR A SPECIFIC<br />BRAND?
+              </span>
+              <span className="pill-subtext">
+                Search by name for quick<br />results
+              </span>
             </div>
 
             <div className="pill-arrow-wrapper">
