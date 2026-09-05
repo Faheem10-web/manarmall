@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import CategoryNav from './components/CategoryNav';
 import HeroBanner from './components/HeroBanner';
-import BrandSearchBanner from './components/BrandSearchBanner';
 import BottomNav from './components/BottomNav';
 import WhatsNew from './components/WhatsNew';
 import TopBrands from './components/TopBrands';
@@ -55,7 +54,6 @@ export default function App() {
           {/* 3. Main Content Area */}
           <main className="main-content">
             <HeroBanner />
-            <BrandSearchBanner onClick={() => {}} />
             <WhatsNew />
             <TopBrands />
             <QuickAccess />

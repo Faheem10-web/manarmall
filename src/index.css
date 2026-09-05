@@ -647,10 +647,10 @@ button {
 /* --------------------------------------------------------------------------
    Carousel Navigation (Circular Arrows & Dots)
    -------------------------------------------------------------------------- */
-/* Centered Carousel Pagination Dots */
+/* Centered Carousel Pagination Dots (Above Card) */
 .carousel-pagination {
   position: absolute;
-  bottom: 14px;
+  bottom: 86px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -663,7 +663,7 @@ button {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.65);
   border: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 0;
@@ -683,30 +683,33 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   BRAND SEARCH PILL BANNER
+   BRAND SEARCH PILL BANNER (Embedded Inside Banner Bottom)
    -------------------------------------------------------------------------- */
-.brand-search-banner-section {
-  width: 100%;
-  padding: 18px 16px 10px 16px;
-  background-color: var(--color-bg);
+.hero-pill-overlay-container {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 25;
 }
 
 .brand-search-pill {
   width: 100%;
-  height: 68px;
+  height: 62px;
   border-radius: 9999px;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.20), 0 2px 6px rgba(0, 0, 0, 0.10);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.38), 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
   user-select: none;
+  background-color: #121820;
 }
 
 .brand-search-pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
 }
 
 .brand-search-pill:active {

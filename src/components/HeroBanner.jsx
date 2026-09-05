@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, ChevronRight } from 'lucide-react';
+
 const SLIDES = [
   {
     id: 0,
@@ -43,7 +44,7 @@ const SLIDES = [
   },
 ];
 
-export default function HeroBanner() {
+export default function HeroBanner({ onBrandSearchClick }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -86,8 +87,6 @@ export default function HeroBanner() {
     setTouchStartX(null);
   };
 
-  const slide = SLIDES[currentSlide];
-
   return (
     <section
       className="hero-section"
@@ -113,12 +112,11 @@ export default function HeroBanner() {
             />
           </div>
         ))}
-
       </div>
 
-      {/* Centered Pagination Dots */}
+      {/* Centered Pagination Dots (Positioned right above the card) */}
       <div
-        className="carousel-pagination"
+        className="carousel-pagination hero-dots-above-card"
         role="tablist"
         aria-label="Carousel slide selector"
       >
@@ -137,6 +135,51 @@ export default function HeroBanner() {
           );
         })}
       </div>
+
+      {/* Brand Search Pill Card (Embedded inside the banner) */}
+      <div className="hero-pill-overlay-container">
+        <div
+          className="brand-search-pill hero-embedded-pill"
+          role="button"
+          tabIndex={0}
+          onClick={onBrandSearchClick}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onBrandSearchClick && onBrandSearchClick();
+            }
+          }}
+          aria-label="Looking for a specific brand? Search by name for quick results"
+        >
+          {/* Dark Background Image & Overlay */}
+          <div className="pill-bg-image-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&q=80&w=800"
+              alt="Find your favorite brands"
+              className="pill-bg-img"
+              loading="lazy"
+            />
+            <div className="pill-dark-overlay" />
+          </div>
+
+          {/* Content Row */}
+          <div className="pill-content">
+            <div className="pill-icon-circle">
+              <MapPin className="pill-icon" size={20} strokeWidth={1.8} />
+            </div>
+
+            <div className="pill-text-group">
+              <span className="pill-heading">LOOKING FOR A SPECIFIC BRAND?</span>
+              <span className="pill-subtext">Search by name for quick results</span>
+            </div>
+
+            <div className="pill-arrow-wrapper">
+              <ChevronRight className="pill-arrow" size={22} strokeWidth={1.75} />
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
+
