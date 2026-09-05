@@ -18,7 +18,7 @@ const SLIDES = [
     headingLine2: 'ELEGANCE',
     description: 'Discover the latest trends\nin luxury fashion.',
     ctaText: 'SHOP THE EDIT',
-    image: 'https://manarmall.com/media/n5qdpmpr/02.jpg?width=2500&format=webp',
+    image: 'https://i.pinimg.com/736x/18/8b/4c/188b4c1822ff54af4a8bef8921943cdc.jpg',
     alt: 'Manar Mall interior and shopping experience',
   },
   {
