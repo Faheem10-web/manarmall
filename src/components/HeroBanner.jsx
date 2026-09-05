@@ -9,7 +9,7 @@ const SLIDES = [
     headingLine2: 'COLLECTION',
     description: 'Timeless elegance & contemporary style.',
     ctaText: 'DISCOVER MORE',
-    image: 'https://res.cloudinary.com/ddluoarzr/image/upload/v1788584558/ChatGPT_Image_Sep_5_2026_10_30_44_AM_hdlihs.png',
+    image: 'https://res.cloudinary.com/ddluoarzr/image/upload/v1788594120/ChatGPT_Image_Sep_5_2026_01_10_51_PM_yxwxns.png',
     alt: 'Manar Mall luxury retail campaign banner',
   },
   {
