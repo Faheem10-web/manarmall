@@ -703,7 +703,7 @@ button {
   overflow: hidden;
   border: 1.5px solid rgba(255, 255, 255, 0.95);
   cursor: pointer;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 249, 252, 0.92) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.97) 0%, rgba(250, 248, 245, 0.92) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow:
@@ -746,14 +746,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-burgundy);
+  color: #7A1F2B;
   flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .pill-icon {
-  color: #7D1F1F;
+  color: #7A1F2B;
 }
 
 .pill-text-group {
@@ -769,7 +769,7 @@ button {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.025em;
-  color: #7D1F1F;
+  color: #7A1F2B;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
@@ -787,7 +787,7 @@ button {
 }
 
 .pill-arrow-wrapper {
-  color: #7D1F1F;
+  color: #7A1F2B;
   opacity: 0.92;
   display: flex;
   align-items: center;
@@ -797,7 +797,7 @@ button {
 }
 
 .pill-arrow {
-  color: #7D1F1F;
+  color: #7A1F2B;
 }
 
 .brand-search-pill:hover .pill-arrow-wrapper {
