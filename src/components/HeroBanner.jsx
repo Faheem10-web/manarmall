@@ -8,8 +8,8 @@ const SLIDES = [
     headingLine2: 'PAIRINGS',
     description: 'Elevate your style\nwith timeless combinations.',
     ctaText: 'SHOP THE EDIT',
-    image: 'https://manarmall.com/media/ajygigv5/01.jpg?width=2500&format=webp',
-    alt: 'Manar Mall front entrance banner',
+    image: 'https://i.pinimg.com/1200x/30/28/ed/3028ed429c02b2c0e0120dc4c63663be.jpg',
+    alt: 'Manar Mall luxury featured banner',
   },
   {
     id: 1,
