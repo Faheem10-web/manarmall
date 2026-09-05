@@ -31,7 +31,7 @@ export default function BrandSearchBanner({ onClick }) {
         {/* Content Row */}
         <div className="pill-content">
           <div className="pill-icon-circle">
-            <MapPin className="pill-icon" size={18} strokeWidth={1.75} />
+            <MapPin className="pill-icon" size={21} strokeWidth={1.8} />
           </div>
 
           <div className="pill-text-group">
@@ -40,7 +40,7 @@ export default function BrandSearchBanner({ onClick }) {
           </div>
 
           <div className="pill-arrow-wrapper">
-            <ChevronRight className="pill-arrow" size={20} strokeWidth={1.5} />
+            <ChevronRight className="pill-arrow" size={22} strokeWidth={1.75} />
           </div>
         </div>
       </div>
