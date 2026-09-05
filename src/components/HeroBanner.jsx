@@ -136,10 +136,10 @@ export default function HeroBanner({ onBrandSearchClick }) {
         })}
       </div>
 
-      {/* Brand Search Pill Card (Embedded inside the banner) */}
+      {/* Brand Search Pill Card (Frosted White Glass Capsule Mode) */}
       <div className="hero-pill-overlay-container">
         <div
-          className="brand-search-pill hero-embedded-pill"
+          className="brand-search-pill glass-pill-mode"
           role="button"
           tabIndex={0}
           onClick={onBrandSearchClick}
@@ -151,21 +151,10 @@ export default function HeroBanner({ onBrandSearchClick }) {
           }}
           aria-label="Looking for a specific brand? Search by name for quick results"
         >
-          {/* Dark Background Image & Overlay */}
-          <div className="pill-bg-image-wrapper">
-            <img
-              src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&q=80&w=800"
-              alt="Find your favorite brands"
-              className="pill-bg-img"
-              loading="lazy"
-            />
-            <div className="pill-dark-overlay" />
-          </div>
-
           {/* Content Row */}
           <div className="pill-content">
             <div className="pill-icon-circle">
-              <MapPin className="pill-icon" size={20} strokeWidth={1.8} />
+              <MapPin className="pill-icon" size={22} strokeWidth={1.75} />
             </div>
 
             <div className="pill-text-group">
@@ -174,7 +163,7 @@ export default function HeroBanner({ onBrandSearchClick }) {
             </div>
 
             <div className="pill-arrow-wrapper">
-              <ChevronRight className="pill-arrow" size={22} strokeWidth={1.75} />
+              <ChevronRight className="pill-arrow" size={24} strokeWidth={1.5} />
             </div>
           </div>
         </div>
