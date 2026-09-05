@@ -154,20 +154,16 @@ export default function HeroBanner({ onBrandSearchClick }) {
           {/* Content Row */}
           <div className="pill-content">
             <div className="pill-icon-circle">
-              <MapPin className="pill-icon" size={22} strokeWidth={1.75} />
+              <MapPin className="pill-icon" size={24} strokeWidth={1.75} />
             </div>
 
             <div className="pill-text-group">
-              <span className="pill-heading">
-                LOOKING FOR A SPECIFIC<br />BRAND?
-              </span>
-              <span className="pill-subtext">
-                Search by name for quick<br />results
-              </span>
+              <span className="pill-heading">LOOKING FOR A SPECIFIC BRAND?</span>
+              <span className="pill-subtext">Search by name for quick results</span>
             </div>
 
             <div className="pill-arrow-wrapper">
-              <ChevronRight className="pill-arrow" size={24} strokeWidth={1.5} />
+              <ChevronRight className="pill-arrow" size={26} strokeWidth={1.4} />
             </div>
           </div>
         </div>
