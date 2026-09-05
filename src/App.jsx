@@ -6,6 +6,7 @@ import BottomNav from './components/BottomNav';
 import WhatsNew from './components/WhatsNew';
 import TopBrands from './components/TopBrands';
 import QuickAccess from './components/QuickAccess';
+import ReferralBanner from './components/ReferralBanner';
 import ExploreShops from './components/ExploreShops';
 import SplashScreen from './components/SplashScreen';
 import LoginScreen from './components/LoginScreen';
@@ -56,6 +57,7 @@ export default function App() {
             <WhatsNew />
             <TopBrands />
             <QuickAccess />
+            <ReferralBanner onInviteClick={() => setShowLogin(true)} />
             <ExploreShops />
           </main>
         </div>

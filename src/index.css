@@ -217,22 +217,23 @@ button {
   position: sticky;
   top: 0;
   z-index: 50;
+  display: flex;
+  flex-direction: column;
 }
 
-.header-container {
+.header-top-row {
   width: 100%;
-  padding: 12px 18px;
+  padding: 6px 16px 0 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
 }
 
-/* Brand Link & Monogram */
+/* Brand Link & Logo */
 .brand-link {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-decoration: none;
   color: inherit;
   transition: opacity 0.2s ease;
@@ -243,7 +244,7 @@ button {
 }
 
 .brand-logo-image {
-  height: 58px;
+  height: 52px;
   width: auto;
   object-fit: contain;
 }
@@ -259,27 +260,27 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  color: var(--color-text-dark);
+  color: #1A1A1A;
   position: relative;
   transition: all 0.2s ease;
 }
 
 .action-btn:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: rgba(139, 37, 37, 0.06);
   color: var(--color-burgundy);
 }
 
 .header-icon {
-  width: 21px;
-  height: 21px;
+  width: 20px;
+  height: 20px;
 }
 
-.menu-icon {
-  width: 24px;
-  height: 24px;
+.support-icon {
+  width: 21px;
+  height: 21px;
 }
 
 /* Notification Badge */
@@ -289,9 +290,9 @@ button {
 
 .notif-badge {
   position: absolute;
-  top: 1px;
-  right: 1px;
-  background-color: var(--color-burgundy);
+  top: 0px;
+  right: 0px;
+  background-color: #832020;
   color: #FFFFFF;
   font-size: 9px;
   font-weight: 700;
@@ -302,7 +303,76 @@ button {
   align-items: center;
   justify-content: center;
   border: 1.5px solid #FFFFFF;
-  box-shadow: 0 1px 3px rgba(139, 37, 37, 0.3);
+  box-shadow: 0 1px 3px rgba(131, 32, 32, 0.35);
+  line-height: 1;
+}
+
+/* Search Bar (Second Row) */
+.header-search-row {
+  width: 100%;
+  padding: 3px 16px 8px 16px;
+}
+
+.search-bar-wrapper {
+  width: 100%;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid #DFCECE;
+  border-radius: 10px;
+  padding: 0 10px;
+  gap: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-bar-wrapper:focus-within {
+  border-color: var(--color-burgundy);
+  box-shadow: 0 0 0 3px rgba(139, 37, 37, 0.08);
+}
+
+.search-icon-left {
+  color: #2F3337;
+  flex-shrink: 0;
+}
+
+.search-input-field {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--color-text-dark);
+  font-weight: 400;
+}
+
+.search-input-field::placeholder {
+  color: #BFA5A5;
+  font-weight: 400;
+  opacity: 1;
+}
+
+.search-mic-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #1A1A1A;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.search-mic-btn:hover {
+  color: var(--color-burgundy);
+  background-color: rgba(139, 37, 37, 0.06);
+}
+
+.mic-sparkle-svg {
+  display: block;
 }
 
 /* --------------------------------------------------------------------------
@@ -373,9 +443,8 @@ button {
 .hero-section {
   position: relative;
   width: 100%;
-  height: 65vh;
-  min-height: 420px;
-  max-height: 580px;
+  height: 200px;
+  max-height: 220px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -580,7 +649,7 @@ button {
 /* Centered Carousel Pagination Dots */
 .carousel-pagination {
   position: absolute;
-  bottom: 26px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1033,6 +1102,46 @@ button {
 
 .indicator.active {
   background-color: var(--color-burgundy);
+}
+
+/* --------------------------------------------------------------------------
+   REFERRAL BANNER CARD
+   -------------------------------------------------------------------------- */
+.referral-banner-section {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--color-bg);
+}
+
+.referral-card-container {
+  width: 100%;
+}
+
+.referral-card-wrapper {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  display: block;
+  border: none;
+  background: transparent;
+}
+
+.referral-card-wrapper:hover {
+  transform: translateY(-2px);
+  opacity: 0.96;
+}
+
+.referral-card-wrapper:active {
+  transform: translateY(0);
+}
+
+.referral-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 /* --------------------------------------------------------------------------
