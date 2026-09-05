@@ -18,8 +18,8 @@ export default function ReferralBanner({ onInviteClick }) {
           aria-label="Refer & Earn Get $10 - Invite Now"
         >
           <img
-            src="/assets/refral.png"
-            alt="Refer & Earn - Get $10. Invite a friend and both get $10 to shop, dine or enjoy more!"
+            src="/assets/refralcard.png"
+            alt="Manar Mall Refer & Earn - Share Happiness Earn Rewards. Invite your friends and both get exciting rewards!"
             className="referral-banner-img"
             loading="lazy"
           />
