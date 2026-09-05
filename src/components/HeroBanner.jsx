@@ -38,7 +38,7 @@ const SLIDES = [
     headingLine2: 'MOMENTS',
     description: 'Create memories with your\nloved ones every day.',
     ctaText: 'DISCOVER MORE',
-    image: 'https://manarmall.com/media/dyshzgqk/4.jpg?width=2500&format=webp',
+    image: 'https://i.pinimg.com/736x/2c/9a/26/2c9a26f0e488068a0f509bd2a9f65a3e.jpg',
     alt: 'Manar Mall family experience',
   },
 ];
