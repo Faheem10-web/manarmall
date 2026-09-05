@@ -104,27 +104,7 @@ export default function HeroBanner({ onBrandSearchClick }) {
         ))}
       </div>
 
-      {/* Centered Pagination Dots (Positioned right above the card) */}
-      <div
-        className="carousel-pagination hero-dots-above-card"
-        role="tablist"
-        aria-label="Carousel slide selector"
-      >
-        {SLIDES.map((s, idx) => {
-          const isActive = idx === currentSlide;
-          return (
-            <button
-              key={s.id}
-              type="button"
-              role="tab"
-              aria-selected={isActive}
-              aria-label={`Go to slide ${idx + 1}`}
-              onClick={() => setCurrentSlide(idx)}
-              className={`pagination-dot ${isActive ? 'active' : ''}`}
-            />
-          );
-        })}
-      </div>
+
 
       {/* Brand Search Pill Card (Frosted White Glass Capsule Mode) */}
       <div className="hero-pill-overlay-container">
