@@ -78,7 +78,6 @@ export default function BottomNav({ activeTab = 'navigate', onSelectTab, onOpenL
                 {item.renderIcon(isActive)}
               </div>
               <span className="bottom-nav-label">{item.label}</span>
-              {isActive && <div className="nav-active-indicator-bar" />}
             </button>
           );
         })}

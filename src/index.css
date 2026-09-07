@@ -1749,9 +1749,9 @@ button {
   justify-content: center;
   padding: 8px 14px;
   background: #FFFFFF;
-  border: 1px solid rgba(228, 220, 212, 0.7);
+  border: 1px solid rgba(228, 220, 212, 0.85);
   border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(80, 50, 40, 0.045), 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow: none;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   gap: 4px;
   cursor: pointer;
@@ -1797,7 +1797,7 @@ button {
 .category-chip.active {
   background: #7E1518;
   border-color: #7E1518;
-  box-shadow: 0 6px 20px rgba(126, 21, 24, 0.32);
+  box-shadow: none;
   transform: translateY(-1px);
 }
 
@@ -2813,20 +2813,5 @@ button {
 .bottom-nav-item.active .bottom-nav-label {
   font-weight: 700;
   color: #8B1D24;
-}
-
-.nav-active-indicator-bar {
-  position: absolute;
-  bottom: 8px;
-  width: 22px;
-  height: 3.2px;
-  background: #8B1D24;
-  border-radius: 2px;
-  animation: barPop 0.2s ease;
-}
-
-@keyframes barPop {
-  from { transform: scaleX(0.6); opacity: 0.6; }
-  to { transform: scaleX(1); opacity: 1; }
 }
 
