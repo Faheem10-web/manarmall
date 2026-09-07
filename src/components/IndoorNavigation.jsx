@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Search, 
-  Mic, 
   ShoppingBag, 
   Utensils, 
   Sparkles, 
@@ -12,21 +11,24 @@ import {
   Plus, 
   Minus, 
   ChevronRight, 
+  ChevronLeft,
+  MoreHorizontal,
+  ListFilter,
   X, 
   Clock, 
   Phone, 
   Star, 
   Tag, 
   Footprints,
-  RotateCcw,
-  CheckCircle2,
-  Volume2
+  Users,
+  Car,
+  Info
 } from 'lucide-react';
 import IndoorMap2D from './IndoorMap2D';
-import { FLOORS, CATEGORIES, MALL_DATA, searchAllStores } from '../data/mallMapData';
+import { FLOORS, CATEGORIES, AMENITY_TAGS, MALL_DATA, searchAllStores } from '../data/mallMapData';
 
 export default function IndoorNavigation({ initialStoreId = null, onBackHome }) {
-  const [currentFloor, setCurrentFloor] = useState('G');
+  const [currentFloor, setCurrentFloor] = useState('GF');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedStore, setSelectedStore] = useState(null);
@@ -34,32 +36,30 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
   const [isWalkingSimulated, setIsWalkingSimulated] = useState(false);
   const [walkingStepIndex, setWalkingStepIndex] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
-  const [isVoiceListening, setIsVoiceListening] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [showFullStoreDrawer, setShowFullStoreDrawer] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
 
-  // User simulated position
   const [userLocation, setUserLocation] = useState({
     x: 260,
-    y: 645,
-    name: 'South Entrance',
-    floor: 'G'
+    y: 670,
+    name: 'South Grand Entrance',
+    floor: 'GF'
   });
 
   const searchInputRef = useRef(null);
 
-  // Initialize with initial store if passed (e.g. ZARA by default)
+  // Initialize selected store (ZARA default)
   useEffect(() => {
-    const defaultStore = MALL_DATA.G.stores.find((s) => s.id === (initialStoreId || 'zara')) || MALL_DATA.G.stores[0];
+    const defaultStore = MALL_DATA.GF.stores.find((s) => s.id === (initialStoreId || 'zara')) || MALL_DATA.GF.stores[0];
     setSelectedStore(defaultStore);
     if (defaultStore.floor) {
       setCurrentFloor(defaultStore.floor);
     }
   }, [initialStoreId]);
 
-  // Handle Search Input Changes
+  // Search filter
   useEffect(() => {
     if (searchQuery.trim().length > 0) {
       const results = searchAllStores(searchQuery, activeCategory);
@@ -69,7 +69,6 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
     }
   }, [searchQuery, activeCategory]);
 
-  // Toast notification helper
   const showToast = (msg) => {
     setToastMessage(msg);
     setTimeout(() => {
@@ -77,27 +76,6 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
     }, 2800);
   };
 
-  // Voice Search Simulation
-  const handleVoiceSearch = () => {
-    setIsVoiceListening(true);
-    showToast('Listening... Try saying "Zara" or "Food Court"');
-
-    setTimeout(() => {
-      const sampleQueries = ['Zara', 'Mango', 'Food Court', 'H&M', 'Carrefour'];
-      const randomQuery = sampleQueries[Math.floor(Math.random() * sampleQueries.length)];
-      setSearchQuery(randomQuery);
-      setIsVoiceListening(false);
-      setIsSearchFocused(false);
-
-      const match = searchAllStores(randomQuery)[0];
-      if (match) {
-        handleSelectStore(match);
-        showToast(`Found: ${match.name}`);
-      }
-    }, 1800);
-  };
-
-  // Select Store Action
   const handleSelectStore = (store) => {
     setSelectedStore(store);
     if (store.floor && store.floor !== currentFloor) {
@@ -108,31 +86,26 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
     setIsWalkingSimulated(false);
   };
 
-  // Switch Floor
   const handleFloorChange = (floorId) => {
     setCurrentFloor(floorId);
-    // If the currently selected store isn't on this floor, deselect or select first store
     if (selectedStore && selectedStore.floor !== floorId) {
       const firstStoreOnFloor = MALL_DATA[floorId]?.stores[0] || null;
       setSelectedStore(firstStoreOnFloor);
     }
-    showToast(`Switched to ${FLOORS.find(f => f.id === floorId)?.name}`);
+    showToast(`Viewing ${FLOORS.find(f => f.id === floorId)?.name}`);
   };
 
-  // Start Navigation Action
   const handleGetDirections = () => {
     if (!selectedStore) return;
-    // Check if user is on different floor
     if (selectedStore.floor !== currentFloor) {
       setCurrentFloor(selectedStore.floor);
     }
     setIsNavigating(true);
     setIsWalkingSimulated(false);
     setShowFullStoreDrawer(false);
-    showToast(`Navigating to ${selectedStore.name} (${selectedStore.walkTimeMin} min walk)`);
+    showToast(`Route to ${selectedStore.name} (${selectedStore.walkTimeMin} min walk)`);
   };
 
-  // Start Real-time Step Walk Simulation
   const handleStartWalkSimulation = () => {
     if (!selectedStore?.pathCoords) return;
     setIsWalkingSimulated(true);
@@ -148,7 +121,7 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
         setUserLocation({
           x: coords[step].x,
           y: coords[step].y,
-          name: step === coords.length - 1 ? selectedStore.name : 'Corridor',
+          name: step === coords.length - 1 ? selectedStore.name : 'Promenade Corridor',
           floor: currentFloor
         });
       } else {
@@ -159,114 +132,103 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
     }, 1200);
   };
 
-  // Reset User Location
   const handleLocateMe = () => {
     setUserLocation({
       x: 260,
-      y: 645,
-      name: 'South Entrance',
-      floor: 'G'
+      y: 670,
+      name: 'South Grand Entrance',
+      floor: 'GF'
     });
-    setCurrentFloor('G');
+    setCurrentFloor('GF');
     setZoomLevel(1);
-    showToast('Centered at Your Location (South Entrance)');
+    showToast('Centered at South Grand Entrance');
   };
 
-  // Zoom Controls
-  const handleZoomIn = () => {
-    setZoomLevel((prev) => Math.min(prev + 0.25, 2.2));
+  const handleAmenityClick = (amenity) => {
+    if (amenity.floor !== currentFloor) {
+      setCurrentFloor(amenity.floor);
+    }
+    setUserLocation({
+      x: amenity.x,
+      y: amenity.y,
+      name: amenity.label,
+      floor: amenity.floor
+    });
+    showToast(`Focused: ${amenity.label}`);
   };
 
-  const handleZoomOut = () => {
-    setZoomLevel((prev) => Math.max(prev - 0.25, 0.8));
-  };
-
-  const activeFloorData = MALL_DATA[currentFloor] || MALL_DATA.G;
+  const activeFloorData = MALL_DATA[currentFloor] || MALL_DATA.GF;
 
   return (
     <div className="indoor-nav-wrapper">
-      {/* 1. TOP HEADER & SEARCH BAR */}
-      <div className="indoor-top-header">
-        <div className="search-bar-container">
-          <div className="search-bar-pill">
-            <Search className="search-icon-burgundy" size={20} strokeWidth={2.4} />
+      {/* 1. TOP APP BAR (MALL MAP) */}
+      <div className="mall-top-nav-bar">
+        <button 
+          className="top-bar-icon-btn" 
+          onClick={onBackHome}
+          aria-label="Back"
+        >
+          <ChevronLeft size={22} strokeWidth={2.4} />
+        </button>
+        <div className="top-bar-title-wrap">
+          <h1 className="mall-map-title">MALL MAP</h1>
+          <span className="mall-map-subtitle">Manar Waterfront Lagoon</span>
+        </div>
+        <button 
+          className="top-bar-icon-btn"
+          onClick={() => showToast('Manar Mall Ras Al Khaimah — Open until Midnight')}
+          aria-label="Options"
+        >
+          <MoreHorizontal size={22} strokeWidth={2.2} />
+        </button>
+      </div>
+
+      {/* 2. SEARCH & LIST FILTER ROW */}
+      <div className="mall-search-section">
+        <div className="search-bar-row">
+          <div className="search-pill-container">
+            <Search className="search-pill-icon" size={19} strokeWidth={2.4} />
             <input
               ref={searchInputRef}
               type="text"
-              className="search-input"
-              placeholder="Search for stores, dining, services..."
+              className="search-pill-input"
+              placeholder="Search for location and more..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsSearchFocused(true)}
             />
-            {searchQuery ? (
+            {searchQuery && (
               <button 
                 className="search-clear-btn"
                 onClick={() => {
                   setSearchQuery('');
                   setSearchResults([]);
                 }}
-                aria-label="Clear search"
               >
                 <X size={16} />
               </button>
-            ) : null}
-            <button
-              className={`mic-btn ${isVoiceListening ? 'listening' : ''}`}
-              onClick={handleVoiceSearch}
-              aria-label="Voice search"
-            >
-              <Mic size={18} className="mic-icon-burgundy" strokeWidth={2.2} />
-            </button>
+            )}
           </div>
+          <button 
+            className="search-filter-btn"
+            onClick={() => showToast('Filter categories and amenities')}
+            aria-label="Filter"
+          >
+            <ListFilter size={19} strokeWidth={2.2} />
+          </button>
         </div>
 
-        {/* 2. CATEGORY FILTER CHIPS */}
-        <div className="category-chips-scroll">
+        {/* 3. CATEGORY PILLS (Shop, Dine, Entertainment, Stay) */}
+        <div className="mall-category-pills-row">
           {CATEGORIES.map((cat) => {
             const isCatActive = activeCategory === cat.id;
             return (
               <button
                 key={cat.id}
-                className={`category-chip ${isCatActive ? 'active' : ''}`}
-                onClick={() => {
-                  setActiveCategory(isCatActive ? 'all' : cat.id);
-                }}
+                className={`mall-cat-pill ${isCatActive ? 'active' : ''}`}
+                onClick={() => setActiveCategory(isCatActive ? 'all' : cat.id)}
               >
-                <div className="chip-icon-wrap">
-                  {cat.id === 'shops' && (
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
-                      <path d="M3 6h18" />
-                      <path d="M16 10a4 4 0 0 1-8 0" />
-                    </svg>
-                  )}
-                  {cat.id === 'dining' && (
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18 2v20M18 2a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4M2 2v6a4 4 0 0 0 4 4v10M6 2v6M10 2v6" />
-                    </svg>
-                  )}
-                  {cat.id === 'entertainment' && (
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="9" />
-                      <circle cx="9" cy="11" r="2.5" />
-                      <circle cx="15" cy="11" r="2.5" />
-                      <circle cx="9" cy="11" r="1" fill="currentColor" />
-                      <circle cx="15" cy="11" r="1" fill="currentColor" />
-                      <path d="M12 13.5 L10.5 16 L13.5 16 Z" fill="currentColor" />
-                    </svg>
-                  )}
-                  {cat.id === 'services' && (
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-                      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-                      <path d="M4 22h16" />
-                      <path d="M10 14.66V17c0 .55-.45 1-1 1H7.5a1.5 1.5 0 0 0 0 3h9a1.5 1.5 0 0 0 0-3H15c-.55 0-1-.45-1-1v-2.34" />
-                      <path d="M18 4H6v7a6 6 0 0 0 12 0V4Z" />
-                    </svg>
-                  )}
-                </div>
-                <span className="chip-label">{cat.name}</span>
+                <span className="cat-pill-text">{cat.name}</span>
               </button>
             );
           })}
@@ -277,19 +239,16 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
       {isSearchFocused && searchQuery.trim().length > 0 && (
         <div className="search-results-overlay">
           <div className="search-results-header">
-            <span>Matching Locations ({searchResults.length})</span>
-            <button 
-              className="close-search-btn"
-              onClick={() => setIsSearchFocused(false)}
-            >
+            <span>Found Locations ({searchResults.length})</span>
+            <button className="close-search-btn" onClick={() => setIsSearchFocused(false)}>
               <X size={16} />
             </button>
           </div>
           <div className="search-results-list">
             {searchResults.length === 0 ? (
               <div className="no-search-results">
-                <p>No stores found matching "{searchQuery}"</p>
-                <span>Try searching "Zara", "Dining", or "Cinema"</span>
+                <p>No matches for "{searchQuery}"</p>
+                <span>Try searching "Zara", "Louis Vuitton", or "Coffee"</span>
               </div>
             ) : (
               searchResults.map((store) => (
@@ -302,9 +261,9 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
                   <div className="search-item-info">
                     <div className="search-item-title-row">
                       <h4>{store.name}</h4>
-                      <span className="floor-tag">Floor {store.floor}</span>
+                      <span className="floor-tag">{store.floorName}</span>
                     </div>
-                    <p className="search-item-sub">{store.subCategory} • {store.locationDesc}</p>
+                    <p className="search-item-sub">{store.subCategory} &bull; {store.locationDesc}</p>
                   </div>
                   <ChevronRight size={18} className="search-item-arrow" />
                 </div>
@@ -314,7 +273,7 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
         </div>
       )}
 
-      {/* 3. NAVIGATION ROUTE BANNER (Active when directions enabled) */}
+      {/* 4. TURN-BY-TURN NAVIGATION ACTIVE BANNER */}
       {isNavigating && selectedStore && (
         <div className="navigation-active-banner">
           <div className="nav-banner-header">
@@ -324,10 +283,10 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
             <div className="nav-banner-info">
               <div className="nav-banner-eta">
                 <strong>{selectedStore.walkTimeMin} min walk</strong>
-                <span className="eta-distance">• {selectedStore.distanceM} m</span>
+                <span className="eta-distance">&bull; {selectedStore.distanceM} m</span>
               </div>
               <p className="nav-banner-guide">
-                Head towards Central Atrium and follow the burgundy route to <strong>{selectedStore.name}</strong>
+                Follow the burgundy route past the Waterfront Lagoon to <strong>{selectedStore.name}</strong>
               </p>
             </div>
             <button 
@@ -363,7 +322,7 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
         </div>
       )}
 
-      {/* 4. MAIN 2D MAP CANVAS AREA */}
+      {/* 5. 2D ARCHITECTURAL VECTOR MAP CANVAS */}
       <div className="indoor-map-viewport">
         <IndoorMap2D
           currentFloor={currentFloor}
@@ -377,132 +336,95 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
           onResetView={() => setZoomLevel(1)}
         />
 
-        {/* 5. FLOATING VERTICAL FLOOR SELECTOR */}
-        <div className="floating-floor-selector">
-          {FLOORS.map((floor) => {
-            const isFloorActive = currentFloor === floor.id;
-            return (
-              <button
-                key={floor.id}
-                className={`floor-pill-btn ${isFloorActive ? 'active' : ''}`}
-                onClick={() => handleFloorChange(floor.id)}
-                aria-label={`Select ${floor.name}`}
-              >
-                <span className="floor-badge-number">{floor.label}</span>
-                <span className="floor-badge-name">{floor.shortName}</span>
-              </button>
-            );
-          })}
+        {/* 6. LEFT FLOATING CONTROLS (Compass, Floor Selector, Locate) */}
+        <div className="floating-left-sidebar">
+          {/* Compass Orientation */}
+          <button
+            className="floating-circle-btn"
+            onClick={() => {
+              setZoomLevel(1);
+              showToast('Oriented to True North');
+            }}
+            title="Compass"
+            aria-label="Compass"
+          >
+            <Compass size={22} className="compass-arrow-icon" strokeWidth={2.4} />
+          </button>
+
+          {/* Vertical Floor Selector */}
+          <div className="floating-vertical-floors">
+            {FLOORS.map((floor) => {
+              const isFloorActive = currentFloor === floor.id;
+              return (
+                <button
+                  key={floor.id}
+                  className={`vertical-floor-btn ${isFloorActive ? 'active' : ''}`}
+                  onClick={() => handleFloorChange(floor.id)}
+                  aria-label={floor.name}
+                >
+                  <span className="floor-code-txt">{floor.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Locate Me Crosshair */}
+          <button
+            className="floating-circle-btn"
+            onClick={handleLocateMe}
+            title="Locate Me"
+            aria-label="Locate me"
+          >
+            <LocateFixed size={20} strokeWidth={2.4} />
+          </button>
         </div>
 
-        {/* 6. FLOATING MAP CONTROLS */}
-        {/* Bottom-Left Compass / Orientation */}
-        <button
-          className="floating-compass-btn"
-          onClick={() => {
-            setZoomLevel(1);
-            showToast('Map oriented North');
-          }}
-          title="Reset Orientation"
-          aria-label="Compass"
-        >
-          <Compass size={22} className="compass-icon" strokeWidth={2} />
-        </button>
-
-        {/* Bottom-Right Locate GPS button */}
-        <button
-          className="floating-locate-btn"
-          onClick={handleLocateMe}
-          title="Locate Me"
-          aria-label="Locate me"
-        >
-          <LocateFixed size={22} className="locate-icon" strokeWidth={2.2} />
-        </button>
-
-        {/* Zoom Controls (+ / -) */}
-        <div className="floating-zoom-controls">
-          <button 
-            className="zoom-btn" 
-            onClick={handleZoomIn} 
-            title="Zoom In"
-            aria-label="Zoom in"
-          >
-            <Plus size={16} strokeWidth={2.5} />
+        {/* 7. RIGHT FLOATING ZOOM */}
+        <div className="floating-right-zoom">
+          <button className="zoom-btn" onClick={() => setZoomLevel((z) => Math.min(z + 0.25, 2.2))} aria-label="Zoom in">
+            <Plus size={18} strokeWidth={2.5} />
           </button>
           <div className="zoom-divider" />
-          <button 
-            className="zoom-btn" 
-            onClick={handleZoomOut} 
-            title="Zoom Out"
-            aria-label="Zoom out"
-          >
-            <Minus size={16} strokeWidth={2.5} />
+          <button className="zoom-btn" onClick={() => setZoomLevel((z) => Math.max(z - 0.25, 0.8))} aria-label="Zoom out">
+            <Minus size={18} strokeWidth={2.5} />
           </button>
+        </div>
+
+        {/* 8. AMENITY QUICK BAR (Male Prayer Room, Female Prayer Room, Restrooms) */}
+        <div className="map-bottom-amenities-row">
+          {AMENITY_TAGS.map((tag) => (
+            <button
+              key={tag.id}
+              className="amenity-quick-chip"
+              onClick={() => handleAmenityClick(tag)}
+            >
+              {tag.id === 'male_prayer' && (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M12 4a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+                  <path d="M6 8h12v3l-4 4v7h-4v-6l-4-3V8Z"/>
+                </svg>
+              )}
+              {tag.id === 'female_prayer' && (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M12 4a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+                  <path d="M9 8h6l3 10h-3l-1.5-5h-3L9 18H6L9 8Z"/>
+                </svg>
+              )}
+              {tag.id === 'restrooms' && <Users size={15} strokeWidth={2.2} />}
+              {tag.id === 'valet' && <Car size={15} strokeWidth={2.2} />}
+              {tag.id === 'info' && <Info size={15} strokeWidth={2.2} />}
+              <span>{tag.label}</span>
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* 7. BOTTOM STORE CARD (SLIDE-UP CARD) */}
-      {selectedStore && !isNavigating && (
-        <div className="bottom-store-card-container">
-          <div className="bottom-store-card">
-            <div className="bottom-card-pull-bar" onClick={() => setShowFullStoreDrawer(!showFullStoreDrawer)} />
-            
-            <div className="bottom-card-content-row">
-              {/* Store Thumbnail */}
-              <div className="store-thumbnail-wrap" onClick={() => setShowFullStoreDrawer(true)}>
-                <img 
-                  src={selectedStore.image} 
-                  alt={selectedStore.name} 
-                  className="store-thumbnail-img" 
-                />
-                <span className="thumbnail-badge">
-                  <Star size={10} fill="#EAB308" color="#EAB308" />
-                  {selectedStore.rating}
-                </span>
-              </div>
-
-              {/* Store Info */}
-              <div className="store-meta-wrap" onClick={() => setShowFullStoreDrawer(true)}>
-                <div className="store-name-row">
-                  <h3 className="store-card-title">{selectedStore.name}</h3>
-                  <ChevronRight size={18} className="card-arrow-icon" />
-                </div>
-                <p className="store-card-subtitle">
-                  {selectedStore.floorName} • {selectedStore.subCategory}
-                </p>
-                <div className="store-quick-timing">
-                  <Clock size={12} className="clock-icon" />
-                  <span>{selectedStore.hours}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Action CTA Button */}
-            <div className="bottom-card-actions">
-              <button 
-                className="get-directions-btn"
-                onClick={handleGetDirections}
-              >
-                <span>Get Directions</span>
-                <ChevronRight size={18} strokeWidth={2.5} className="cta-arrow" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* 8. EXPANDED STORE FULL DETAILS MODAL / DRAWER */}
+      {/* 10. EXPANDED FULL STORE DRAWER */}
       {showFullStoreDrawer && selectedStore && (
         <div className="store-drawer-modal-backdrop" onClick={() => setShowFullStoreDrawer(false)}>
-          <div 
-            className="store-drawer-modal-sheet" 
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="store-drawer-modal-sheet" onClick={(e) => e.stopPropagation()}>
             <div className="drawer-header-drag" />
-            <button 
-              className="drawer-close-btn"
-              onClick={() => setShowFullStoreDrawer(false)}
-            >
+            <button className="drawer-close-btn" onClick={() => setShowFullStoreDrawer(false)}>
               <X size={20} />
             </button>
 
@@ -529,7 +451,7 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
                 <div className="stat-box">
                   <Clock size={18} className="burgundy-text" />
                   <strong>Open</strong>
-                  <span>until 11:00 PM</span>
+                  <span>{selectedStore.hours}</span>
                 </div>
               </div>
 
@@ -579,7 +501,7 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
         </div>
       )}
 
-      {/* TOAST NOTIFICATION */}
+      {/* TOAST */}
       {toastMessage && (
         <div className="indoor-nav-toast">
           <span>{toastMessage}</span>
