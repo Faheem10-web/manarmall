@@ -1581,11 +1581,52 @@ button {
 .indoor-top-header {
   position: relative;
   z-index: 25;
-  padding: 16px 16px 10px 16px;
+  padding: 12px 16px 10px 16px;
   background: #FAF7F2;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
+}
+
+.indoor-screen-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2px 0;
+}
+
+.nav-back-arrow-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #2D2522;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-back-arrow-btn:hover {
+  color: #8B1D24;
+  transform: translateX(-2px);
+}
+
+.nav-screen-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #2D2522;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: inherit;
+}
+
+.nav-title-spacer {
+  width: 36px;
 }
 
 .search-bar-container {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
+  ArrowLeft,
   Search, 
   Mic, 
   ShoppingBag, 
@@ -187,6 +188,19 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
     <div className="indoor-nav-wrapper">
       {/* 1. TOP HEADER & SEARCH BAR */}
       <div className="indoor-top-header">
+        {/* Top Header Bar with Back Arrow and Centered NAVIGATE Title */}
+        <div className="indoor-screen-title-bar">
+          <button 
+            className="nav-back-arrow-btn"
+            onClick={onBackHome}
+            aria-label="Back to home"
+          >
+            <ArrowLeft size={21} strokeWidth={2} />
+          </button>
+          <h2 className="nav-screen-title">NAVIGATE</h2>
+          <div className="nav-title-spacer" />
+        </div>
+
         <div className="search-bar-container">
           <div className="search-bar-pill">
             <Search className="search-icon-burgundy" size={20} strokeWidth={2.4} />
