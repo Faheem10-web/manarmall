@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import { Home, Navigation, Store, Car, User } from 'lucide-react';
+import React from 'react';
+import { Home, Navigation, Store, Layers, Menu, User } from 'lucide-react';
 
-export default function BottomNav({ onOpenLogin }) {
-  const [activeTab, setActiveTab] = useState('home');
-
+export default function BottomNav({ activeTab = 'navigate', onSelectTab, onOpenLogin }) {
   const navItems = [
-    { id: 'home', label: 'HOME', icon: Home },
-    { id: 'navigate', label: 'NAVIGATE', icon: Navigation },
-    { id: 'explore', label: 'EXPLORE', icon: Store },
-    { id: 'commute', label: 'COMMUTE', icon: Car },
-    { id: 'profile', label: 'PROFILE', icon: User },
+    { id: 'home', label: 'Home', icon: Home },
+    { id: 'navigate', label: 'Navigate', icon: Navigation },
+    { id: 'stores', label: 'Stores', icon: Store },
+    { id: 'services', label: 'Services', icon: Layers },
+    { id: 'more', label: 'More', icon: Menu },
   ];
 
   return (
@@ -23,13 +21,17 @@ export default function BottomNav({ onOpenLogin }) {
               key={item.id}
               className={`bottom-nav-item ${isActive ? 'active' : ''}`}
               onClick={() => {
-                setActiveTab(item.id);
-                if (item.id === 'profile' && onOpenLogin) {
+                if (onSelectTab) {
+                  onSelectTab(item.id);
+                }
+                if (item.id === 'more' && onOpenLogin) {
                   onOpenLogin();
                 }
               }}
             >
-              <Icon className="bottom-nav-icon" strokeWidth={isActive ? 2.5 : 1.8} />
+              <div className="nav-icon-wrapper">
+                <Icon className="bottom-nav-icon" strokeWidth={isActive ? 2.4 : 1.8} />
+              </div>
               <span className="bottom-nav-label">{item.label}</span>
             </button>
           );
