@@ -1035,7 +1035,7 @@ button {
    -------------------------------------------------------------------------- */
 .referral-banner-section {
   width: 100%;
-  padding: 10px 12px 20px 12px;
+  padding: 6px 10px 18px 10px;
   background-color: var(--color-bg);
 }
 
@@ -1045,19 +1045,19 @@ button {
 
 .referral-card-wrapper {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease;
   display: block;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  background: #200408;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  border: none;
+  background: transparent;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.10), 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .referral-card-wrapper:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18), 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .referral-card-wrapper:active {
@@ -1069,7 +1069,8 @@ button {
   height: auto;
   display: block;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 22px;
+  border: none;
   transition: transform 0.35s ease;
 }
 
