@@ -1035,7 +1035,7 @@ button {
    -------------------------------------------------------------------------- */
 .referral-banner-section {
   width: 100%;
-  padding: 14px 16px;
+  padding: 10px 12px 20px 12px;
   background-color: var(--color-bg);
 }
 
@@ -1045,23 +1045,23 @@ button {
 
 .referral-card-wrapper {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease;
   display: block;
-  border: none;
-  background: transparent;
-  box-shadow: 0 6px 20px rgba(114, 28, 28, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  background: #200408;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .referral-card-wrapper:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(114, 28, 28, 0.28), 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18), 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .referral-card-wrapper:active {
-  transform: translateY(0);
+  transform: scale(0.985);
 }
 
 .referral-banner-img {
@@ -1069,7 +1069,12 @@ button {
   height: auto;
   display: block;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: 20px;
+  transition: transform 0.35s ease;
+}
+
+.referral-card-wrapper:hover .referral-banner-img {
+  transform: scale(1.015);
 }
 
 /* --------------------------------------------------------------------------

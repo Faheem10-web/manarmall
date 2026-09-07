@@ -15,10 +15,10 @@ export default function ReferralBanner({ onInviteClick }) {
               onInviteClick && onInviteClick();
             }
           }}
-          aria-label="Refer & Earn Get $10 - Invite Now"
+          aria-label="Refer & Earn - Share Happiness Earn Rewards. Invite Now"
         >
           <img
-            src="/assets/newcard.png"
+            src="https://res.cloudinary.com/ddluoarzr/image/upload/v1788756435/ChatGPT_Image_Sep_7_2026_10_16_10_AM_jiyjhx.png"
             alt="Manar Mall Refer & Earn - Share Happiness Earn Rewards. Invite your friends and both get exciting rewards!"
             className="referral-banner-img"
             loading="lazy"
