@@ -1578,103 +1578,44 @@ button {
 /* --------------------------------------------------------------------------
    1. TOP HEADER & SEARCH BAR
    -------------------------------------------------------------------------- */
-/* --------------------------------------------------------------------------
-   1. TOP APP BAR & MALL MAP HEADER
-   -------------------------------------------------------------------------- */
-.mall-top-nav-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 14px 4px 14px;
-  background: #FAF7F2;
+.indoor-top-header {
   position: relative;
   z-index: 25;
-}
-
-.top-bar-icon-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #2D2522;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.top-bar-icon-btn:hover {
-  background: #EFE8DE;
-}
-
-.top-bar-title-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.mall-map-title {
-  font-size: 14.5px;
-  font-weight: 800;
-  letter-spacing: 2.2px;
-  color: #1F1B18;
-  margin: 0;
-  font-family: inherit;
-}
-
-.mall-map-subtitle {
-  font-size: 9.5px;
-  font-weight: 600;
-  color: #8B1D24;
-  letter-spacing: 0.4px;
-}
-
-/* --------------------------------------------------------------------------
-   2. SEARCH BAR & LIST FILTER ROW
-   -------------------------------------------------------------------------- */
-.mall-search-section {
-  padding: 6px 14px 8px 14px;
+  padding: 16px 16px 10px 16px;
   background: #FAF7F2;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  position: relative;
-  z-index: 25;
+  gap: 14px;
 }
 
-.search-bar-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.search-bar-container {
   width: 100%;
 }
 
-.search-pill-container {
-  flex: 1;
+.search-bar-pill {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: #FFFFFF;
-  border: 1px solid rgba(228, 220, 212, 0.85);
+  border: 1px solid rgba(228, 220, 212, 0.6);
   border-radius: 9999px;
-  padding: 8px 16px;
-  min-height: 48px;
-  box-shadow: 0 4px 14px rgba(80, 50, 40, 0.04);
+  padding: 6px 8px 6px 18px;
+  min-height: 52px;
+  box-shadow: 0 4px 18px rgba(80, 50, 40, 0.05);
   transition: all 0.25s ease;
 }
 
-.search-pill-container:focus-within {
+.search-bar-pill:focus-within {
   border-color: #8B1D24;
-  box-shadow: 0 6px 20px rgba(139, 29, 36, 0.12);
+  box-shadow: 0 6px 22px rgba(139, 29, 36, 0.12);
 }
 
-.search-pill-icon {
+.search-icon-burgundy {
   color: #8B1D24;
   flex-shrink: 0;
 }
 
-.search-pill-input {
+.search-input {
   flex: 1;
   border: none;
   background: transparent;
@@ -1685,73 +1626,141 @@ button {
   font-family: inherit;
 }
 
-.search-pill-input::placeholder {
+.search-input::placeholder {
   color: #7E7771;
   font-weight: 400;
 }
 
-.search-filter-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  border: 1px solid rgba(228, 220, 212, 0.85);
+.search-clear-btn {
+  color: #9CA3AF;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2D2522;
-  box-shadow: 0 4px 14px rgba(80, 50, 40, 0.04);
-  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.search-clear-btn:hover {
+  color: #4B5563;
+}
+
+.mic-btn {
+  color: #8B1D24;
+  background: #FDF0ED;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  border: 1px solid rgba(245, 215, 210, 0.6);
   transition: all 0.2s ease;
 }
 
-.search-filter-btn:hover {
-  background: #FAF5F0;
-  transform: scale(1.05);
+.mic-btn:hover {
+  background: #FBE2DC;
+  transform: scale(1.04);
+}
+
+.mic-btn.listening {
+  background: #8B1D24;
+  color: #FFFFFF;
+  border-color: #8B1D24;
+  animation: micPulse 1.2s infinite alternate;
+}
+
+@keyframes micPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(139, 29, 36, 0.4); }
+  100% { transform: scale(1.12); box-shadow: 0 0 0 10px rgba(139, 29, 36, 0); }
+}
+
+.mic-icon-burgundy {
+  color: inherit;
 }
 
 /* --------------------------------------------------------------------------
-   3. CATEGORY PILLS (Shop, Dine, Entertainment, Stay)
+   2. CATEGORY FILTER CHIPS (4-CARD LUXURY SQUIRCLE LAYOUT)
    -------------------------------------------------------------------------- */
-.mall-category-pills-row {
+.category-chips-scroll {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
-  overflow-x: auto;
-  padding: 2px 0 2px 0;
-  scrollbar-width: none;
+  width: 100%;
+  padding: 2px 0 4px 0;
 }
 
-.mall-category-pills-row::-webkit-scrollbar {
-  display: none;
-}
-
-.mall-cat-pill {
-  padding: 7px 18px;
-  border-radius: 9999px;
+.category-chip {
+  flex: 1 1 0px;
+  min-width: 0;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
   background: #FFFFFF;
-  border: 1px solid rgba(228, 220, 212, 0.9);
-  color: #372E29;
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(80, 50, 40, 0.03);
+  border: 1px solid rgba(232, 224, 216, 0.85);
+  border-radius: 18px;
+  box-shadow: 0 3px 12px rgba(80, 50, 40, 0.035);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 4px;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.mall-cat-pill:hover {
+.chip-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: #8B1D24;
+  transition: all 0.2s ease;
+}
+
+.chip-icon-wrap svg {
+  color: inherit;
+  width: 22px;
+  height: 22px;
+}
+
+.category-chip .chip-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #2D2522;
+  transition: color 0.2s ease;
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: -0.1px;
+}
+
+.category-chip:hover {
   border-color: #D6C7BC;
   background: #FDFBF8;
+  transform: translateY(-1px);
 }
 
-.mall-cat-pill.active {
+.category-chip:active {
+  transform: scale(0.96);
+}
+
+.category-chip.active {
   background: #7E1518;
   border-color: #7E1518;
+  box-shadow: 0 6px 18px rgba(126, 21, 24, 0.28);
+  transform: translateY(-1px);
+}
+
+.category-chip.active .chip-icon-wrap {
+  color: #FFFFFF;
+}
+
+.category-chip.active .chip-label {
   color: #FFFFFF;
   font-weight: 700;
-  box-shadow: 0 4px 14px rgba(126, 21, 24, 0.28);
 }
 
 /* --------------------------------------------------------------------------
@@ -1759,9 +1768,9 @@ button {
    -------------------------------------------------------------------------- */
 .search-results-overlay {
   position: absolute;
-  top: 130px;
-  left: 14px;
-  right: 14px;
+  top: 115px;
+  left: 16px;
+  right: 16px;
   max-height: 480px;
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
@@ -2089,25 +2098,24 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   5 & 6. FLOATING SIDEBAR CONTROLS (LEFT & RIGHT)
+   5 & 6. FLOATING MAP CONTROLS (LEFT & RIGHT)
    -------------------------------------------------------------------------- */
-.floating-left-sidebar {
+.floating-left-controls {
   position: absolute;
-  top: 14px;
+  bottom: 215px;
   left: 14px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  gap: 12px;
   z-index: 25;
 }
 
-.floating-circle-btn {
+.floating-map-btn {
   width: 44px;
   height: 44px;
   border-radius: 50%;
   background: #FFFFFF;
-  border: 1px solid rgba(228, 220, 212, 0.9);
+  border: 1px solid rgba(228, 220, 212, 0.8);
   box-shadow: 0 4px 14px rgba(70, 50, 40, 0.08);
   display: flex;
   align-items: center;
@@ -2117,70 +2125,94 @@ button {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.floating-circle-btn:hover {
+.floating-map-btn:hover {
   background: #FAF5F0;
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
-.compass-arrow-icon {
-  color: #8B1D24;
+.floating-btn-icon {
+  color: #2D2522;
 }
 
-/* Vertical Floor Selector (SF, FF, GF, CF) */
-.floating-vertical-floors {
-  background: #FFFFFF;
-  border: 1px solid rgba(228, 220, 212, 0.9);
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(70, 50, 40, 0.08);
+.floating-right-controls {
+  position: absolute;
+  bottom: 215px;
+  right: 14px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  width: 44px;
+  align-items: center;
+  gap: 12px;
+  z-index: 25;
 }
 
-.vertical-floor-btn {
-  height: 38px;
+/* Vertical Floor Selector */
+.floating-floor-selector {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(228, 220, 212, 0.85);
+  border-radius: 30px;
+  padding: 6px 4px;
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(70, 50, 40, 0.08);
+}
+
+.floor-pill-btn {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 44px;
+  padding: 6px 0;
+  border-radius: 22px;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   color: #4A4036;
-  font-size: 13px;
-  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border-bottom: 1px solid rgba(238, 230, 222, 0.6);
 }
 
-.vertical-floor-btn:last-child {
-  border-bottom: none;
+.floor-badge-number {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
 }
 
-.vertical-floor-btn:hover {
+.floor-badge-name {
+  font-size: 8.5px;
+  font-weight: 600;
+  color: #8C8074;
+  margin-top: 2px;
+  text-transform: capitalize;
+}
+
+.floor-pill-btn:hover {
   background: #FAF5F0;
 }
 
-.vertical-floor-btn.active {
-  background: #C5A059;
+.floor-pill-btn.active {
+  background: #7E1518;
   color: #FFFFFF;
-  font-weight: 800;
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 14px rgba(126, 21, 24, 0.35);
+  transform: scale(1.05);
 }
 
-/* Right Zoom Controls (+ / -) */
-.floating-right-zoom {
-  position: absolute;
-  bottom: 68px;
-  right: 14px;
-  background: #FFFFFF;
-  border: 1px solid rgba(228, 220, 212, 0.9);
+.floor-pill-btn.active .floor-badge-number,
+.floor-pill-btn.active .floor-badge-name {
+  color: #FFFFFF;
+}
+
+/* Zoom Controls (+ / -) */
+.floating-zoom-controls {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(228, 220, 212, 0.85);
   border-radius: 18px;
-  box-shadow: 0 4px 16px rgba(70, 50, 40, 0.08);
+  box-shadow: 0 6px 20px rgba(70, 50, 40, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
   width: 44px;
-  z-index: 25;
 }
 
 .zoom-btn {
@@ -2203,55 +2235,6 @@ button {
   width: 26px;
   height: 1px;
   background: #EAE2D8;
-}
-
-/* --------------------------------------------------------------------------
-   8. AMENITY QUICK BAR (Male Prayer, Female Prayer, Restrooms)
-   -------------------------------------------------------------------------- */
-.map-bottom-amenities-row {
-  position: absolute;
-  bottom: 12px;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 0 14px;
-  scrollbar-width: none;
-  z-index: 25;
-}
-
-.map-bottom-amenities-row::-webkit-scrollbar {
-  display: none;
-}
-
-.amenity-quick-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(32, 24, 20, 0.92);
-  backdrop-filter: blur(10px);
-  color: #FFFFFF;
-  padding: 8px 16px;
-  border-radius: 9999px;
-  font-size: 11.5px;
-  font-weight: 600;
-  white-space: nowrap;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.amenity-quick-chip:hover {
-  background: #8B1D24;
-  border-color: #8B1D24;
-  transform: translateY(-1px);
-}
-
-.amenity-quick-chip svg {
-  color: inherit;
 }
 
 /* --------------------------------------------------------------------------
@@ -2286,14 +2269,46 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.bottom-card-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  min-height: 20px;
+  margin-bottom: 2px;
+}
+
 .bottom-card-pull-bar {
-  width: 38px;
+  width: 40px;
   height: 4px;
   background: #D8CEBE;
   border-radius: 3px;
-  align-self: center;
   cursor: pointer;
-  margin-top: 2px;
+  margin: 0 auto;
+}
+
+.card-dismiss-btn {
+  position: absolute;
+  right: -4px;
+  top: -2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #F4EFEB;
+  color: #6E6258;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-dismiss-btn:hover {
+  background: #EAE0D6;
+  color: #201A16;
+  transform: scale(1.08);
 }
 
 .bottom-card-content-row {
