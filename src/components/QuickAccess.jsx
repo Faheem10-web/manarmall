@@ -83,7 +83,7 @@ export default function QuickAccess() {
   return (
     <section className="quick-access-section" aria-labelledby="quick-access-heading">
       <div className="section-header">
-        <h2 id="quick-access-heading">SERVICES & HIGHLIGHTS</h2>
+        <h2 id="quick-access-heading">QUICK ACCESS</h2>
         <button type="button" className="view-all-link">View All <span className="arrow-icon">›</span></button>
       </div>
       
