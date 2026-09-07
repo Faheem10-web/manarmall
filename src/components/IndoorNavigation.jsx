@@ -379,6 +379,28 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
 
         {/* 5. FLOATING CONTROLS (LEFT SIDE) */}
         <div className="floating-left-controls">
+          {/* Zoom Controls (+ / -) */}
+          <div className="floating-zoom-controls">
+            <button 
+              className="zoom-btn" 
+              onClick={handleZoomIn} 
+              title="Zoom In"
+              aria-label="Zoom in"
+            >
+              <Plus size={18} strokeWidth={2.5} />
+            </button>
+            <div className="zoom-divider" />
+            <button 
+              className="zoom-btn" 
+              onClick={handleZoomOut} 
+              title="Zoom Out"
+              aria-label="Zoom out"
+            >
+              <Minus size={18} strokeWidth={2.5} />
+            </button>
+          </div>
+
+          {/* Quick Action Map Buttons */}
           <button
             className="floating-map-btn"
             onClick={handleLocateMe}
@@ -418,27 +440,6 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
                 </button>
               );
             })}
-          </div>
-
-          {/* Zoom Controls (+ / -) */}
-          <div className="floating-zoom-controls">
-            <button 
-              className="zoom-btn" 
-              onClick={handleZoomIn} 
-              title="Zoom In"
-              aria-label="Zoom in"
-            >
-              <Plus size={18} strokeWidth={2.5} />
-            </button>
-            <div className="zoom-divider" />
-            <button 
-              className="zoom-btn" 
-              onClick={handleZoomOut} 
-              title="Zoom Out"
-              aria-label="Zoom out"
-            >
-              <Minus size={18} strokeWidth={2.5} />
-            </button>
           </div>
         </div>
       </div>
