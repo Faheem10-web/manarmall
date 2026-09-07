@@ -10,6 +10,7 @@ export const FLOORS = [
 ];
 
 export const CATEGORIES = [
+  { id: 'all', name: 'All', icon: 'Sparkles' },
   { id: 'shops', name: 'Shops', icon: 'ShoppingBag' },
   { id: 'dining', name: 'Dining', icon: 'Utensils' },
   { id: 'entertainment', name: 'Entertainment', icon: 'Sparkles' },

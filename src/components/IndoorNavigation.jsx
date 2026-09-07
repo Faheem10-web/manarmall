@@ -244,10 +244,16 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
                 key={cat.id}
                 className={`category-chip ${isCatActive ? 'active' : ''}`}
                 onClick={() => {
-                  setActiveCategory(isCatActive ? 'all' : cat.id);
+                  setActiveCategory(cat.id);
                 }}
               >
                 <div className="chip-icon-wrap">
+                  {cat.id === 'all' && (
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z" />
+                      <circle cx="19" cy="5" r="1.5" fill="currentColor" stroke="none" />
+                    </svg>
+                  )}
                   {cat.id === 'shops' && (
                     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
@@ -261,22 +267,17 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
                     </svg>
                   )}
                   {cat.id === 'entertainment' && (
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="9" />
-                      <circle cx="9" cy="11" r="2.5" />
-                      <circle cx="15" cy="11" r="2.5" />
-                      <circle cx="9" cy="11" r="1" fill="currentColor" />
-                      <circle cx="15" cy="11" r="1" fill="currentColor" />
-                      <path d="M12 13.5 L10.5 16 L13.5 16 Z" fill="currentColor" />
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+                      <path d="M9 12h.01M15 12h.01" strokeWidth="3" />
                     </svg>
                   )}
                   {cat.id === 'services' && (
                     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-                      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-                      <path d="M4 22h16" />
-                      <path d="M10 14.66V17c0 .55-.45 1-1 1H7.5a1.5 1.5 0 0 0 0 3h9a1.5 1.5 0 0 0 0-3H15c-.55 0-1-.45-1-1v-2.34" />
-                      <path d="M18 4H6v7a6 6 0 0 0 12 0V4Z" />
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                     </svg>
                   )}
                 </div>
