@@ -54,9 +54,9 @@ export default function App() {
           {/* 3. Main Content Area */}
           <main className="main-content">
             <HeroBanner />
+            <QuickAccess />
             <WhatsNew />
             <TopBrands />
-            <QuickAccess />
             <ReferralBanner onInviteClick={() => setShowLogin(true)} />
             <ExploreShops />
           </main>
