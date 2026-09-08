@@ -11,14 +11,16 @@ import ExploreShops from './components/ExploreShops';
 import SplashScreen from './components/SplashScreen';
 import LoginScreen from './components/LoginScreen';
 import IndoorNavigation from './components/IndoorNavigation';
+import ShopsScreen from './components/ShopsScreen';
+import MoreScreen from './components/MoreScreen';
 import { Wifi, Battery, Signal } from 'lucide-react';
 import './index.css';
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState('shopping');
-  const [showSplash, setShowSplash] = useState(false); // set to false for immediate instant preview, user can re-trigger
+  const [showSplash, setShowSplash] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-  const [activeTab, setActiveTab] = useState('navigate'); // Default directly to the new 2D Indoor Navigation screen!
+  const [activeTab, setActiveTab] = useState('more'); // Default directly to the new Luxury More / Profile screen
   const [selectedNavStoreId, setSelectedNavStoreId] = useState('zara');
 
   const handleNavigateToStore = (storeId) => {
@@ -50,7 +52,22 @@ export default function App() {
         </div>
 
         {/* Screen Content */}
-        {activeTab === 'navigate' ? (
+        {activeTab === 'more' ? (
+          <div className="mobile-screen-content nav-screen-mode">
+            <MoreScreen
+              onOpenLogin={() => setShowLogin(true)}
+              onSelectTab={(tabId) => setActiveTab(tabId)}
+            />
+          </div>
+        ) : activeTab === 'shops' ? (
+          <div className="mobile-screen-content nav-screen-mode">
+            <ShopsScreen
+              onBackHome={() => setActiveTab('home')}
+              onNavigateToStore={handleNavigateToStore}
+              onOpenNavigate={() => setActiveTab('navigate')}
+            />
+          </div>
+        ) : activeTab === 'navigate' ? (
           <div className="mobile-screen-content nav-screen-mode">
             <IndoorNavigation
               initialStoreId={selectedNavStoreId}
@@ -90,3 +107,5 @@ export default function App() {
     </div>
   );
 }
+
+
