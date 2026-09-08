@@ -208,7 +208,7 @@ export default function IndoorNavigation({ initialStoreId = null, onBackHome }) 
               ref={searchInputRef}
               type="text"
               className="search-input"
-              placeholder="Search for stores, dining, services..."
+              placeholder="Search stores, dining, services..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsSearchFocused(true)}
