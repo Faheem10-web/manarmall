@@ -109,7 +109,7 @@ export default function MoreScreen({ onOpenLogin, onSelectTab }) {
             </div>
             <div className="profile-info-stack">
               <h2 className="profile-user-name">Muhammed Afsal</h2>
-              <p className="profile-member-since">Member since 2024</p>
+              <p className="profile-member-since">Member since 2026</p>
             </div>
           </div>
           <button
